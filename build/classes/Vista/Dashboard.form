@@ -2876,18 +2876,18 @@
                                   <Component id="jScrollPane8" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel120" min="-2" pref="82" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="jTextField35" min="-2" pref="171" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                                      <Component id="lbVentaTotal" min="-2" pref="152" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace pref="202" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
-                                          <Component id="jLabel132" min="-2" pref="128" max="-2" attributes="0"/>
+                                          <Component id="btnCobroPago" min="-2" pref="128" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" alignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="103" alignment="0" groupAlignment="0" attributes="0">
                                                   <Component id="jLabel130" alignment="1" min="-2" pref="96" max="-2" attributes="0"/>
@@ -2896,23 +2896,21 @@
                                               <Component id="jLabel131" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                                  <Component id="jTextField39" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
-                                                  <Component id="jTextField38" alignment="1" min="-2" pref="145" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="jTextField40" alignment="0" min="-2" pref="145" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtEfectivo" alignment="0" pref="145" max="32767" attributes="0"/>
+                                              <Component id="lbCobroCambio" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="lbCobroTotal" alignment="0" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel126" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
-                                          <Component id="jLabel125" alignment="1" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Component id="jLabel126" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Component id="cmbCobroUsuario" min="-2" pref="166" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel127" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                                          <Component id="lbFecha" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                                           <Component id="jLabel128" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -2937,33 +2935,33 @@
                                           <Component id="jLabel126" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel125" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
-                                          <Component id="jLabel127" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="lbFecha" min="-2" pref="26" max="-2" attributes="0"/>
+                                          <Component id="cmbCobroUsuario" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel129" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="jTextField38" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="lbCobroTotal" max="32767" attributes="0"/>
+                                          <Component id="jLabel129" pref="29" max="32767" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel130" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="jTextField39" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="txtEfectivo" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel131" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="jTextField40" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="jLabel131" pref="29" max="32767" attributes="0"/>
+                                          <Component id="lbCobroCambio" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Component id="jScrollPane8" alignment="0" min="-2" pref="285" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jTextField35" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel120" alignment="3" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jLabel132" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="btnCobroPago" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="lbVentaTotal" alignment="1" min="-2" pref="44" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="19" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -3001,14 +2999,6 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Total a pagar:"/>
                       </Properties>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField35">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="170.00"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField35ActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="btnCobroDelete">
                       <Properties>
@@ -3072,20 +3062,14 @@
                         <Property name="text" type="java.lang.String" value="PAGO"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel125">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Daniel"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel126">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Usuario:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel127">
+                    <Component class="javax.swing.JLabel" name="lbFecha">
                       <Properties>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="text" type="java.lang.String" value="21/01/19"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel128">
@@ -3099,29 +3083,25 @@
                         <Property name="text" type="java.lang.String" value="Total a Pagar:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField38">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="$170.00"/>
-                      </Properties>
-                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel130">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Efectivo:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField39">
+                    <Component class="javax.swing.JTextField" name="txtEfectivo">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="$200.00"/>
+                        <Property name="text" type="java.lang.String" value="0"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtEfectivoKeyTyped"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel131">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Cambio:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField40">
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel132">
+                    <Component class="javax.swing.JLabel" name="btnCobroPago">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="22" green="a0" red="1a" type="rgb"/>
@@ -3139,6 +3119,30 @@
                         </Property>
                         <Property name="opaque" type="boolean" value="true"/>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCobroPagoMouseClicked"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbCobroCambio">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbCobroTotal">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="lbVentaTotal">
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="cmbCobroUsuario">
+                      <Properties>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="4">
+                            <StringItem index="0" value="Item 1"/>
+                            <StringItem index="1" value="Item 2"/>
+                            <StringItem index="2" value="Item 3"/>
+                            <StringItem index="3" value="Item 4"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>

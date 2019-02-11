@@ -95,6 +95,15 @@ public class Consultas {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void LimpiarVenta(String sql) {
+        try {
+            st = cn.createStatement();
+            st.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     //agregar usuario nuevo 
     public void AgregarUsuario(String nombre, String Apellido, String Usuario, String Contrase, String Fecha, String Estado) {
@@ -207,6 +216,15 @@ public class Consultas {
             st = cn.createStatement();
             st.executeUpdate("INSERT INTO cervezadama (dama, unity, price, idProduct, idCategory, idUser, status)"
                     + " VALUES ('" + nombre + "' , '" + unidad + "', '" + precio + "', '" + producto + "', '" + categoria + "', '" + usuario + "', '1')");
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void AgregarPago(String total, String pago, String cambio, String usuario) {
+        try {
+            st = cn.createStatement();
+            st.executeUpdate("INSERT INTO pago (Total, Pago, Cambio, idUser, Fecha) VALUES ('" + total + "', '" + pago + "', '" + cambio + "', '" + usuario + "', now())");
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }

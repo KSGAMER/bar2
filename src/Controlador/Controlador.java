@@ -161,6 +161,11 @@ public class Controlador {
         con.AgregarCervDama(nombre, unidad, precio, idP, idC, idU);
     }
     
+    public void AgregarPago(String total, String pago, String cambio, String usuario) {
+        String idU = idCDUser(usuario);
+        con.AgregarPago(total, pago, cambio, idU);
+    }
+    
     public void AgregarCobro(String Producto, String Cantidad) {
         String idP = idPr(Producto);
         con.AgregarCobro(idP, Cantidad);
@@ -171,6 +176,32 @@ public class Controlador {
         ResultSet Info = con.TablaUsu("SELECT name FROM categoria  where status = 1");
         try {
             while (Info.next()) {
+                array.add(Info.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
+    }
+    
+    public ArrayList TotalPrecio() {
+        ArrayList array = new ArrayList();
+        ResultSet Info = con.TablaUsu("SELECT p.price FROM venta as v INNER JOIN producto as p on p.id = v.idProduct WHERE v.status = 1");
+        try {
+            while(Info.next()) {
+                array.add(Info.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
+    }
+    
+    public ArrayList TotalCantidad() {
+        ArrayList array = new ArrayList();
+        ResultSet Info = con.TablaUsu("SELECT v.Cantidad FROM venta as v INNER JOIN producto as p on p.id = v.idProduct WHERE v.status = 1");
+        try {
+            while(Info.next()) {
                 array.add(Info.getString(1));
             }
         } catch (SQLException ex) {
@@ -197,6 +228,19 @@ public class Controlador {
     public ArrayList ComboxProduct() {
         ArrayList array = new ArrayList();
         ResultSet Info = con.TablaUsu("SELECT name FROM producto where status = 1");
+        try {
+            while(Info.next()) {
+                array.add(Info.getString(1));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
+    }
+    
+    public ArrayList Fecha() {
+        ArrayList array = new ArrayList();
+        ResultSet Info = con.TablaUsu("SELECT date(now())");
         try {
             while(Info.next()) {
                 array.add(Info.getString(1));
@@ -295,6 +339,10 @@ public class Controlador {
     
     public void EliminarCobro(String id) {
         con.EliminarCobro("UPDATE venta SET status = '0' WHERE id = '" + id + "'");
+    }
+    
+    public void limpiarVenta() {
+        con.LimpiarVenta("DELETE FROM venta");
     }
 
     public DefaultTableModel TablaUsuario() {
@@ -435,4 +483,5 @@ public class Controlador {
         }
         return Perfil;
     }
+    
 }

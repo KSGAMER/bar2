@@ -79,6 +79,7 @@ public class Dashboard extends javax.swing.JFrame {
         lbUnidad.setText("");
         txtVentasCantidad.setText("1");
         txtVentaBuscar.setText("");
+        txtEfectivo.setText("");
     }
 
     void CargarBoxProduc() {
@@ -86,6 +87,14 @@ public class Dashboard extends javax.swing.JFrame {
         ArrayList ar = contro.ComboxPro();
         for (int i = 0; i < ar.size(); i++) {
             JCRegisCategoria.addItem(ar.get(i).toString());
+        }
+    }
+    
+    void CargarBoxCobro() {
+        cmbCobroUsuario.removeAllItems();
+        ArrayList cmbUser = contro.ComboxUser();
+        for (int i = 0; i < cmbUser.size(); i++) {
+            cmbCobroUsuario.addItem(cmbUser.get(i).toString());
         }
     }
 
@@ -309,22 +318,22 @@ public class Dashboard extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         tbCobro = new javax.swing.JTable();
         jLabel120 = new javax.swing.JLabel();
-        jTextField35 = new javax.swing.JTextField();
         btnCobroDelete = new javax.swing.JLabel();
         jLabel122 = new javax.swing.JLabel();
         jLabel123 = new javax.swing.JLabel();
         jLabel124 = new javax.swing.JLabel();
-        jLabel125 = new javax.swing.JLabel();
         jLabel126 = new javax.swing.JLabel();
-        jLabel127 = new javax.swing.JLabel();
+        lbFecha = new javax.swing.JLabel();
         jLabel128 = new javax.swing.JLabel();
         jLabel129 = new javax.swing.JLabel();
-        jTextField38 = new javax.swing.JTextField();
         jLabel130 = new javax.swing.JLabel();
-        jTextField39 = new javax.swing.JTextField();
+        txtEfectivo = new javax.swing.JTextField();
         jLabel131 = new javax.swing.JLabel();
-        jTextField40 = new javax.swing.JTextField();
-        jLabel132 = new javax.swing.JLabel();
+        btnCobroPago = new javax.swing.JLabel();
+        lbCobroCambio = new javax.swing.JLabel();
+        lbCobroTotal = new javax.swing.JLabel();
+        lbVentaTotal = new javax.swing.JLabel();
+        cmbCobroUsuario = new javax.swing.JComboBox<>();
         Venta = new javax.swing.JPanel();
         jLabel104 = new javax.swing.JLabel();
         txtVentaBuscar = new javax.swing.JTextField();
@@ -1638,13 +1647,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         jLabel120.setText("Total a pagar:");
 
-        jTextField35.setText("170.00");
-        jTextField35.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField35ActionPerformed(evt);
-            }
-        });
-
         btnCobroDelete.setBackground(new java.awt.Color(182, 43, 43));
         btnCobroDelete.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnCobroDelete.setForeground(new java.awt.Color(255, 255, 255));
@@ -1679,33 +1681,40 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel124.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel124.setText("PAGO");
 
-        jLabel125.setText("Daniel");
-
         jLabel126.setText("Usuario:");
 
-        jLabel127.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel127.setText("21/01/19");
+        lbFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         jLabel128.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel128.setText("Fecha:");
 
         jLabel129.setText("Total a Pagar:");
 
-        jTextField38.setText("$170.00");
-
         jLabel130.setText("Efectivo:");
 
-        jTextField39.setText("$200.00");
+        txtEfectivo.setText("0");
+        txtEfectivo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEfectivoKeyTyped(evt);
+            }
+        });
 
         jLabel131.setText("Cambio:");
 
-        jLabel132.setBackground(new java.awt.Color(26, 160, 34));
-        jLabel132.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel132.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel132.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel132.setText("Agregar");
-        jLabel132.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel132.setOpaque(true);
+        btnCobroPago.setBackground(new java.awt.Color(26, 160, 34));
+        btnCobroPago.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCobroPago.setForeground(new java.awt.Color(255, 255, 255));
+        btnCobroPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCobroPago.setText("Agregar");
+        btnCobroPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCobroPago.setOpaque(true);
+        btnCobroPago.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCobroPagoMouseClicked(evt);
+            }
+        });
+
+        cmbCobroUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout CobroLayout = new javax.swing.GroupLayout(Cobro);
         Cobro.setLayout(CobroLayout);
@@ -1729,14 +1738,14 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(CobroLayout.createSequentialGroup()
                         .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(37, 37, 37)
+                        .addComponent(lbVentaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                 .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(CobroLayout.createSequentialGroup()
                             .addGap(214, 214, 214)
-                            .addComponent(jLabel132, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCobroPago, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(CobroLayout.createSequentialGroup()
                             .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1744,18 +1753,17 @@ public class Dashboard extends javax.swing.JFrame {
                                     .addComponent(jLabel129, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel131, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jTextField40, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEfectivo, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                                .addComponent(lbCobroCambio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbCobroTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CobroLayout.createSequentialGroup()
                         .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel126, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel125, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(198, 198, 198)
+                            .addComponent(jLabel126, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbCobroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(104, 104, 104)
                         .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel128, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(80, 80, 80))
         );
@@ -1773,27 +1781,27 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(jLabel128, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel126, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel125, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel127, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbCobroUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(99, 99, 99)
-                        .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel129, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField38, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbCobroTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel129, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel130, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField39, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel131, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField40, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel131, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(lbCobroCambio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel132, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCobroPago, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbVentaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCobroDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1981,6 +1989,10 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     String Des = "La";
     int w = 230;
+
+    double Total = 0;
+    double cambio = 0;
+
     //Variables de Tipo
     String GuarTipo = "Ag";
     String GuarTipoPro = "Ag";
@@ -2113,6 +2125,7 @@ public class Dashboard extends javax.swing.JFrame {
         Venta.setVisible(true);
         Cobro.setVisible(false);
         cambioPaneles(Ventas);
+        CargarBoxCobro();
     }//GEN-LAST:event_LBVentasMouseClicked
 
     private void LbVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbVentasMouseClicked
@@ -2122,6 +2135,7 @@ public class Dashboard extends javax.swing.JFrame {
         Venta.setVisible(true);
         Cobro.setVisible(false);
         cambioPaneles(Ventas);
+        CargarBoxCobro();
     }//GEN-LAST:event_LbVentasMouseClicked
 
     private void LBCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LBCajaMouseClicked
@@ -2290,6 +2304,14 @@ public class Dashboard extends javax.swing.JFrame {
             tbCobro.setModel(contro.TablaCobro());
             Cobro.setVisible(true);
             Venta.setVisible(false);
+            ArrayList Precio = contro.TotalPrecio();
+            ArrayList Cantidad = contro.TotalCantidad();
+            for (int i = 0; i < Precio.size(); i++) {
+                Total = Total + (Double.parseDouble((String) Precio.get(i)) * Integer.parseInt(Cantidad.get(i).toString()));
+            }
+            lbVentaTotal.setText("$" + String.valueOf(Total) + "0");
+            lbCobroTotal.setText("$" + String.valueOf(Total) + "0");
+            lbFecha.setText(contro.Fecha().get(0).toString());
         }
     }//GEN-LAST:event_btnPagarMouseClicked
 
@@ -2334,10 +2356,6 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVentaBuscarMouseClicked
 
-    private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField35ActionPerformed
-
     private void btnDamaDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDamaDeleteMouseClicked
         int file = tbCervDama.getSelectedRow();
         if (file == -1) {
@@ -2360,6 +2378,30 @@ public class Dashboard extends javax.swing.JFrame {
             tbCobro.setModel(contro.TablaCobro());
         }
     }//GEN-LAST:event_btnCobroDeleteMouseClicked
+
+    private void txtEfectivoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEfectivoKeyTyped
+        if (txtEfectivo.getText().equals("")) {
+            cambio = 0.0 - Total;
+        } else {
+            cambio = Double.parseDouble(txtEfectivo.getText()) - Total;
+            lbCobroCambio.setText("$" + String.valueOf(cambio) + "0");
+        }
+    }//GEN-LAST:event_txtEfectivoKeyTyped
+
+    private void btnCobroPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCobroPagoMouseClicked
+        if (cambio < 0 || txtEfectivo.getText().isEmpty() || txtEfectivo.getText().equals("") || txtEfectivo.getText().equals("0")) {
+            JOptionPane.showMessageDialog(null, "La cantidad es menor a lo esperado, ingrese nuevamente la cantidad", "Advertencia", 2);
+        } else {
+            contro.limpiarVenta();
+            tbCobro.setModel(contro.TablaCobro());
+            contro.AgregarPago(String.valueOf(Total), txtEfectivo.getText(),String.valueOf(cambio), cmbCobroUsuario.getSelectedItem().toString());
+            cambio = 0;
+            Total = 0;
+            Venta.setVisible(true);
+            Cobro.setVisible(false);
+            LimpiarVenta();
+        }
+    }//GEN-LAST:event_btnCobroPagoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2442,12 +2484,14 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JPanel Ventas;
     private javax.swing.JLabel btnCaja;
     private javax.swing.JLabel btnCobroDelete;
+    private javax.swing.JLabel btnCobroPago;
     private javax.swing.JLabel btnDamaCancel;
     private javax.swing.JLabel btnDamaDelete;
     private javax.swing.JLabel btnDamaModify;
     private javax.swing.JLabel btnGuardarDama;
     private javax.swing.JLabel btnPagar;
     private javax.swing.JLabel btnVentaBuscar;
+    private javax.swing.JComboBox<String> cmbCobroUsuario;
     private javax.swing.JComboBox<String> cmbDamaCategory;
     private javax.swing.JComboBox<String> cmbDamaProduct;
     private javax.swing.JComboBox<String> cmbDamaUser;
@@ -2470,15 +2514,12 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel122;
     private javax.swing.JLabel jLabel123;
     private javax.swing.JLabel jLabel124;
-    private javax.swing.JLabel jLabel125;
     private javax.swing.JLabel jLabel126;
-    private javax.swing.JLabel jLabel127;
     private javax.swing.JLabel jLabel128;
     private javax.swing.JLabel jLabel129;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel130;
     private javax.swing.JLabel jLabel131;
-    private javax.swing.JLabel jLabel132;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -2582,13 +2623,13 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
-    private javax.swing.JTextField jTextField35;
-    private javax.swing.JTextField jTextField38;
-    private javax.swing.JTextField jTextField39;
-    private javax.swing.JTextField jTextField40;
+    private javax.swing.JLabel lbCobroCambio;
+    private javax.swing.JLabel lbCobroTotal;
+    private javax.swing.JLabel lbFecha;
     private javax.swing.JLabel lbNombre;
     private javax.swing.JLabel lbPrecio;
     private javax.swing.JLabel lbUnidad;
+    private javax.swing.JLabel lbVentaTotal;
     private javax.swing.JLabel lbX;
     private javax.swing.JLabel lbminimizar;
     private javax.swing.JPanel pnlFuncinesPantallas;
@@ -2599,6 +2640,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JTextField txtDama;
     private javax.swing.JTextField txtDamaPrice;
     private javax.swing.JTextField txtDamaUnity;
+    private javax.swing.JTextField txtEfectivo;
     private javax.swing.JTextField txtMontoCaja;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPasswordCaja;
