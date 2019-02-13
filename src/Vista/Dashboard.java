@@ -118,7 +118,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     void Iniciar() {
         // EscritorioInterno.setBorder(new ImagenFondo("../Imagen/bar2.jpg"));
-        Deslizable();
+        
         DefaultTableModel tbVentas;
         TbUsuario.setModel(contro.TablaUsuario());
         TbCateCategoria.setModel(contro.TablaCategoria());
@@ -138,7 +138,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         JPrincipal = new javax.swing.JPanel();
         Header = new javax.swing.JPanel();
-        BntMenu1 = new javax.swing.JLabel();
         pnlFuncinesPantallas = new javax.swing.JPanel();
         lbX = new javax.swing.JLabel();
         lbminimizar = new javax.swing.JLabel();
@@ -358,14 +357,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         Header.setBackground(new java.awt.Color(23, 66, 107));
 
-        BntMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagen/menuB.png"))); // NOI18N
-        BntMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        BntMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                BntMenu1MouseClicked(evt);
-            }
-        });
-
         pnlFuncinesPantallas.setBackground(new java.awt.Color(23, 66, 107));
 
         lbX.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -424,20 +415,14 @@ public class Dashboard extends javax.swing.JFrame {
         HeaderLayout.setHorizontalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(HeaderLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(BntMenu1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1224, Short.MAX_VALUE)
+                .addContainerGap(1284, Short.MAX_VALUE)
                 .addComponent(pnlFuncinesPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         HeaderLayout.setVerticalGroup(
             HeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, HeaderLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BntMenu1)
-                .addContainerGap())
             .addGroup(HeaderLayout.createSequentialGroup()
                 .addComponent(pnlFuncinesPantallas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 40, Short.MAX_VALUE))
         );
 
         MenuDesple.setBackground(new java.awt.Color(6, 33, 60));
@@ -1798,10 +1783,11 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(lbCobroCambio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCobroPago, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbVentaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbVentaTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCobroPago, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCobroDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2022,25 +2008,7 @@ public class Dashboard extends javax.swing.JFrame {
         p.setVisible(true);
     }
 
-    void Deslizable() {
-        if (Des.equals("La")) {
-            MenuDesple.setSize(w, MenuDesple.getHeight());
-            EscritorioInterno.setSize(EscritorioInterno.getWidth() - w, EscritorioInterno.getHeight());
-            EscritorioInterno.setLocation(EscritorioInterno.getX() + w, EscritorioInterno.getY());
-            Des = "Oc";
-            Cambio(false);
-        } else if (Des.equals("Oc")) {
-            MenuDesple.setSize(w + w, MenuDesple.getHeight());
-            EscritorioInterno.setSize(EscritorioInterno.getWidth() + w, EscritorioInterno.getHeight());
-            EscritorioInterno.setLocation(EscritorioInterno.getX() - w, EscritorioInterno.getY());
-            Des = "La";
-            Cambio(true);
-        }
-    }
-    private void BntMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BntMenu1MouseClicked
-        Deslizable();
-    }//GEN-LAST:event_BntMenu1MouseClicked
-
+  
     private void lbXMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbXMouseClicked
         System.exit(0);
     }//GEN-LAST:event_lbXMouseClicked
@@ -2066,25 +2034,19 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_lbminimizarMouseExited
 
     private void LBUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LBUserMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         TbUsuario.setModel(contro.TablaUsuario());
         cambioPaneles(Usuario);
     }//GEN-LAST:event_LBUserMouseClicked
 
     private void LbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbUsuarioMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         TbUsuario.setModel(contro.TablaUsuario());
         cambioPaneles(Usuario);
     }//GEN-LAST:event_LbUsuarioMouseClicked
 
     private void LBproducMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LBproducMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         cambioPaneles(Productos);
         TbRegisRProductos.setModel(contro.TablaProductos());
         TbCateCategoria.setModel(contro.TablaCategoria());
@@ -2092,9 +2054,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_LBproducMouseClicked
 
     private void LbProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbProductosMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         cambioPaneles(Productos);
         TbRegisRProductos.setModel(contro.TablaProductos());
         TbCateCategoria.setModel(contro.TablaCategoria());
@@ -2102,26 +2062,20 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_LbProductosMouseClicked
 
     private void LBDamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LBDamaMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         cambioPaneles(CervDama);
         tbCervDama.setModel(contro.TablaCervDama());
         CargarBoxCervezaDama();
     }//GEN-LAST:event_LBDamaMouseClicked
 
     private void LbDamaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbDamaMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         cambioPaneles(CervDama);
 
     }//GEN-LAST:event_LbDamaMouseClicked
 
     private void LBVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LBVentasMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+   
         Venta.setVisible(true);
         Cobro.setVisible(false);
         cambioPaneles(Ventas);
@@ -2129,9 +2083,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_LBVentasMouseClicked
 
     private void LbVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbVentasMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+     
         Venta.setVisible(true);
         Cobro.setVisible(false);
         cambioPaneles(Ventas);
@@ -2139,16 +2091,12 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_LbVentasMouseClicked
 
     private void LBCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LBCajaMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+       
         cambioPaneles(Caja);
     }//GEN-LAST:event_LBCajaMouseClicked
 
     private void LbCajaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LbCajaMouseClicked
-        if (Des.equals("La")) {
-            Deslizable();
-        }
+      
         cambioPaneles(Caja);
     }//GEN-LAST:event_LbCajaMouseClicked
 
@@ -2439,7 +2387,6 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel BntMenu1;
     private javax.swing.JLabel BtnCancelar;
     private javax.swing.JLabel BtnGuardar;
     private javax.swing.JPanel Caja;
