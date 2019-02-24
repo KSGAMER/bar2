@@ -96,6 +96,15 @@ public class Consultas {
         }
     }
     
+    public void AgregarCobro(String sql) {
+        try {
+            st = cn.createStatement();
+            st.executeUpdate(sql);
+        } catch (SQLException ex) {
+            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void LimpiarVenta(String sql) {
         try {
             st = cn.createStatement();
@@ -233,7 +242,7 @@ public class Consultas {
     public void AgregarCobro(String producto, String cantidad) {
         try {
             st = cn.createStatement();
-            st.executeUpdate("INSERT INTO venta (idProduct, Cantidad, status) VALUES ('" + producto + "', '" + cantidad + "', 1)");
+            st.executeUpdate("INSERT INTO venta (idProduct, Cantidad) VALUES ('" + producto + "', '" + cantidad + "')");
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }

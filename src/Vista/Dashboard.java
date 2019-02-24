@@ -89,7 +89,7 @@ public class Dashboard extends javax.swing.JFrame {
             JCRegisCategoria.addItem(ar.get(i).toString());
         }
     }
-    
+
     void CargarBoxCobro() {
         cmbCobroUsuario.removeAllItems();
         ArrayList cmbUser = contro.ComboxUser();
@@ -1798,10 +1798,11 @@ public class Dashboard extends javax.swing.JFrame {
                             .addComponent(lbCobroCambio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
-                .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCobroPago, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbVentaTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbVentaTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel120, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCobroPago, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(CobroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCobroDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1854,6 +1855,9 @@ public class Dashboard extends javax.swing.JFrame {
         btnPagar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPagarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnPagarMouseEntered(evt);
             }
         });
 
@@ -2299,7 +2303,15 @@ public class Dashboard extends javax.swing.JFrame {
         if (lbNombre.getText().equals("") && lbPrecio.getText().equals("") && lbUnidad.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del Producto", "Advertencia", 2);
         } else {
-            contro.AgregarCobro(lbNombre.getText(), txtVentasCantidad.getText());
+            ArrayList id = new ArrayList();
+            id = contro.CobroExistente(lbNombre.getText());
+            Total = 0;
+            if (id.size() == 0) {
+                contro.AgregarCobro(lbNombre.getText(), txtVentasCantidad.getText());
+            } else {
+                System.out.println(id.get(0));
+                contro.ActualizarCobroExistente(id.get(0).toString(), txtVentasCantidad.getText());
+            }
             LimpiarVenta();
             tbCobro.setModel(contro.TablaCobro());
             Cobro.setVisible(true);
@@ -2349,6 +2361,7 @@ public class Dashboard extends javax.swing.JFrame {
         if (txtVentaBuscar.getText() == null || txtVentaBuscar.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese el nombre del Producto a buscar", "Advertencia", 2);
         } else {
+
             ArrayList venta = contro.VentaBuscar(txtVentaBuscar.getText());
             lbNombre.setText(venta.get(0).toString());
             lbUnidad.setText(venta.get(1).toString());
@@ -2376,6 +2389,20 @@ public class Dashboard extends javax.swing.JFrame {
             idCobro = contro.idCobro(tbCobro.getValueAt(file, 0).toString(), tbCobro.getValueAt(file, 1).toString(), tbCobro.getValueAt(file, 3).toString());
             contro.EliminarCobro(idCobro);
             tbCobro.setModel(contro.TablaCobro());
+            Total = 0;
+//            contro.AgregarCobro(lbNombre.getText(), txtVentasCantidad.getText());
+            LimpiarVenta();
+            tbCobro.setModel(contro.TablaCobro());
+            Cobro.setVisible(true);
+            Venta.setVisible(false);
+            ArrayList Precio = contro.TotalPrecio();
+            ArrayList Cantidad = contro.TotalCantidad();
+            for (int i = 0; i < Precio.size(); i++) {
+                Total = Total + (Double.parseDouble((String) Precio.get(i)) * Integer.parseInt(Cantidad.get(i).toString()));
+            }
+            lbVentaTotal.setText("$" + String.valueOf(Total) + "0");
+            lbCobroTotal.setText("$" + String.valueOf(Total) + "0");
+            lbFecha.setText(contro.Fecha().get(0).toString());
         }
     }//GEN-LAST:event_btnCobroDeleteMouseClicked
 
@@ -2394,7 +2421,7 @@ public class Dashboard extends javax.swing.JFrame {
         } else {
             contro.limpiarVenta();
             tbCobro.setModel(contro.TablaCobro());
-            contro.AgregarPago(String.valueOf(Total), txtEfectivo.getText(),String.valueOf(cambio), cmbCobroUsuario.getSelectedItem().toString());
+            contro.AgregarPago(String.valueOf(Total), txtEfectivo.getText(), String.valueOf(cambio), cmbCobroUsuario.getSelectedItem().toString());
             cambio = 0;
             Total = 0;
             Venta.setVisible(true);
@@ -2402,6 +2429,10 @@ public class Dashboard extends javax.swing.JFrame {
             LimpiarVenta();
         }
     }//GEN-LAST:event_btnCobroPagoMouseClicked
+
+    private void btnPagarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPagarMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPagarMouseEntered
 
     /**
      * @param args the command line arguments

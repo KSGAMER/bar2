@@ -186,7 +186,7 @@ public class Controlador {
     
     public ArrayList TotalPrecio() {
         ArrayList array = new ArrayList();
-        ResultSet Info = con.TablaUsu("SELECT p.price FROM venta as v INNER JOIN producto as p on p.id = v.idProduct WHERE v.status = 1");
+        ResultSet Info = con.TablaUsu("SELECT p.price FROM venta as v INNER JOIN producto as p on p.id = v.idProduct");
         try {
             while(Info.next()) {
                 array.add(Info.getString(1));
@@ -199,7 +199,7 @@ public class Controlador {
     
     public ArrayList TotalCantidad() {
         ArrayList array = new ArrayList();
-        ResultSet Info = con.TablaUsu("SELECT v.Cantidad FROM venta as v INNER JOIN producto as p on p.id = v.idProduct WHERE v.status = 1");
+        ResultSet Info = con.TablaUsu("SELECT v.Cantidad FROM venta as v INNER JOIN producto as p on p.id = v.idProduct");
         try {
             while(Info.next()) {
                 array.add(Info.getString(1));
@@ -218,6 +218,19 @@ public class Controlador {
                 array.add(Info.getString(1));
                 array.add(Info.getString(2));
                 array.add(Info.getString(3));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return array;
+    }
+    
+    public ArrayList CobroExistente(String producto) {
+        ArrayList array = new ArrayList();
+        ResultSet Info = con.TablaUsu("SELECT v.id FROM venta v INNER JOIN producto p on p.id = v.idProduct WHERE p.name = '" + producto + "'");
+        try {
+            while(Info.next()) {
+                array.add(Info.getString(1));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -290,7 +303,7 @@ public class Controlador {
         String titulos[] = {"Nombre", "Unidad", "Precio", "Cantidad"};
         String[] registros = new String[4];
         DefaultTableModel model = new DefaultTableModel(null, titulos);
-        ResultSet Info = con.TablaUsu("SELECT p.name, p.unity, p.price, v.Cantidad FROM venta as v INNER JOIN producto as p on p.id = v.idProduct WHERE v.status = '1'");
+        ResultSet Info = con.TablaUsu("SELECT p.name, p.unity, p.price, v.Cantidad FROM venta as v INNER JOIN producto as p on p.id = v.idProduct");
         try {
             while(Info.next()) {
                 registros[0] = Info.getString(1);
@@ -338,7 +351,11 @@ public class Controlador {
     }
     
     public void EliminarCobro(String id) {
-        con.EliminarCobro("UPDATE venta SET status = '0' WHERE id = '" + id + "'");
+        con.EliminarCobro("DELETE FROM venta WHERE id = '" + id + "'");
+    }
+    
+    public void ActualizarCobroExistente(String id, String cantidad) {
+        con.AgregarCobro("UPDATE venta SET cantidad = cantidad + '" + cantidad + "' WHERE id = '" + id + "'");
     }
     
     public void limpiarVenta() {
@@ -408,7 +425,7 @@ public class Controlador {
     public String idCobro(String producto, String unidad, String cantidad) {
         String id = null;
         String idP = idP(producto, unidad);
-        ResultSet rs = con.consultar("id", "venta", " idProduct = '" + idP + "' and Cantidad = '" + cantidad + "' and status = 1");
+        ResultSet rs = con.consultar("id", "venta", " idProduct = '" + idP + "' and Cantidad = '" + cantidad + "'");
         try {
             while(rs.next()){
                 id = rs.getString(1);
